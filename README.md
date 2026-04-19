@@ -11,7 +11,7 @@ In addition to data collection, the system performs **basic statistical anomaly 
 ---
 
 ## 👥 Team  
-**Team Name:** *(Add your team name)*  
+**Team Name:** *PowerPulse*  
 
 **Members:**  
 - Sooraj D S  
