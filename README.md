@@ -87,4 +87,119 @@ A **dual-circuit monitoring system** that:
 
 ---
 
-## 🔌 System Architecture  
+## 🧪 How It Works  
+
+1. Two circuits simulate two rooms  
+2. Each circuit uses:
+   - Voltage sensor  
+   - Current sensor  
+3. Arduino reads analog values  
+4. Data is sent via serial in format:
+   Time,V1,V2,I1,I2
+
+5. Python script:
+   - Logs data into CSV  
+   - Computes power:
+     ```
+     P1 = V1 × I1
+     P2 = V2 × I2
+     ```
+   - Performs anomaly detection  
+
+---
+
+## 📊 Anomaly Detection (Core Addition)
+
+### Method Used: Z-Score Based Detection  
+
+Formula:
+Z = (X - μ) / σ
+
+
+Where:
+- X = current value  
+- μ = mean  
+- σ = standard deviation  
+
+### Rule:
+- If |Z| > 2 → **Anomaly**  
+- Else → **Normal**
+
+---
+
+## 📊 Results  
+
+### Power vs Time Graph
+<img width="567" height="455" alt="output" src="https://github.com/user-attachments/assets/6d83d63a-511e-4273-9b08-d03a40292b2e" />
+
+- Channel 1 shows stable behavior with occasional spikes  
+- Channel 2 shows frequent ON/OFF transitions
+ 
+**Detected Anomalies:**
+- Channel 1: 4 anomalies  
+- Channel 2: 73 anomalies  
+
+---
+
+## 🔍 Interpretation  
+
+**Channel 1:**
+- Mostly stable  
+- Occasional spikes  
+- Represents normal behavior with rare anomalies  
+
+**Channel 2:**
+- Frequent ON/OFF switching  
+- Sudden drops to zero  
+- High number of anomalies (expected behavior)  
+
+---
+
+## ⚡ What Counts as Anomaly  
+
+- Sudden current spikes (e.g., motor activation)  
+- Sudden drops to zero (switch OFF)  
+- Irregular fluctuations  
+
+---
+
+## 🧠 Why This Approach (Instead of Heavy AI)
+
+- Dataset size is small  
+- Limited features (Voltage, Current)  
+- Real-time constraints on microcontroller  
+
+✔ Implemented **lightweight edge intelligence** instead of complex AI  
+
+> “A statistical anomaly detection system inspired by ML principles, optimized for embedded deployment.”
+
+---
+
+## 🔮 Future Work  
+
+- Implement ML-based anomaly detection (TinyML)  
+- Deploy detection on ESP32 (Edge AI)  
+- Add real-time alerts  
+- Build dashboard visualization  
+
+---
+
+## 🎬 Demo  
+
+🔗 https://youtu.be/AyIpIBVJ50A?si=k9gJisHb_scpT2YA  
+<img width="1280" height="960" alt="PowerPulse" src="https://github.com/user-attachments/assets/5dea58d1-f775-419f-b6bd-61aa501e6eda" />
+
+---
+
+## 📦 Setup  
+
+### Hardware  
+- Connect sensors to Arduino (A0–A3)  
+- Connect loads via DIP switch  
+- Use 12V power supply  
+
+### Software  
+```bash
+pip install pyserial numpy matplotlib
+
+---
