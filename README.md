@@ -187,6 +187,8 @@ Where:
 ## 🎬 Demo  
 
 🔗 https://youtu.be/AyIpIBVJ50A?si=k9gJisHb_scpT2YA  
+
+
 <img width="1280" height="960" alt="PowerPulse" src="https://github.com/user-attachments/assets/5dea58d1-f775-419f-b6bd-61aa501e6eda" />
 
 ---
